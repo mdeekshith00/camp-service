@@ -2,11 +2,15 @@ package com.camp.servcie.entities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,15 +34,23 @@ public class CampCoordinator implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "camp_coordinator-Id")
-	private Integer CampCoordinatorId;             // Coordinator ID
-	 @Column(nullable = true)
+	private Integer CampCoordinatorId; 
+	
+	@Column(nullable = true)
 	private Integer userId;         // Reference to user-service
+	
 	 @Column(nullable = true)
 	private Integer campId;         // Associated camp
 	 
 	private String role;         // Example: MAIN_COORDINATOR
-	 @Column(nullable = true)
+	
+	@Column(nullable = true)
 	private String contactNumber; // Emergency contact for camp
+	
+	@OneToOne
+	@JoinColumn(name ="camp_id")
+	@JsonBackReference
+	private Camp camp;
 
 
 }

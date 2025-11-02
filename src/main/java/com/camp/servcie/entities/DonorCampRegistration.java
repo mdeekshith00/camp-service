@@ -35,20 +35,28 @@ public class DonorCampRegistration implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "donor_camp_registration_id")
-	    private Integer donorCampRegistrationId;                       // Unique registration ID
+	    private Integer donorCampRegistrationId;
+	
         @Column(nullable = true)
 	    private Integer donorId;                  // Donor reference (user-service)
+        
         @Column(nullable = true)
 	    private Integer campId;                   // Associated camp
+        
         @Column(nullable = true)
 	    private DonationStatus donationStatus; // REGISTERED, VERIFIED, DONATED, CANCELLED
+        
         @Column(nullable = true)
 	    private boolean rewardIssued;          // Whether certificate/reward is issued
+        
         @Column(nullable = true)
 	    private RewardType rewardType;         // CERTIFICATE, COUPON, POINTS
+        
         @Column(nullable = true)
 	    private Timestamp checkInTime;         // Donor check-in at camp
+        
 	    private Timestamp donationTime;        // Time donation occurred
+	    
 	    private boolean healthVerification;    // Pass/Fail health check before donation
 
 }
